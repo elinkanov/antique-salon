@@ -1,4 +1,3 @@
-# Файл .gitlab-ci.yml
 pages:
   stage: deploy
   script:
