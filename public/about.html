@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас | Антикварный салон Retro Room</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/about-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+        }
+        .about-hero h1 {
+            font-family: 'Ambidexter', serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .about-grid {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-text h2 {
+            font-family: 'Ambidexter', serif;
+            font-size: 2rem;
+            color: #7a2e3a;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        .about-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .team-section {
+            text-align: center;
+            margin-top: 60px;
+        }
+        .team-section h2 {
+            font-family: 'Ambidexter', serif;
+            font-size: 2.5rem;
+            color: #7a2e3a;
+            margin-bottom: 40px;
+        }
+        .team-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .team-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .team-card:hover {
+            transform: translateY(-8px);
+        }
+        .team-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .team-card h3 {
+            font-size: 1.3rem;
+            color: #333;
+        }
+        .team-card p {
+            color: #7a2e3a;
+            font-weight: 500;
+        }
+        .values {
+            background: #f4f1ea;
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+        .values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .values h2 {
+            font-family: 'Ambidexter', serif;
+            font-size: 2.5rem;
+            color: #7a2e3a;
+            margin-bottom: 40px;
+        }
+        .values-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .value-item {
+            width: 250px;
+        }
+        .value-item img {
+            width: 60px;
+            margin-bottom: 20px;
+        }
+        .value-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html"><img src="images/vaza.png" alt="Ваза"></a>
+        <button class="burger" id="burgerBtn">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="navigacia">
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="blog.html">Блог</a>
+            <a href="about.html">О нас</a>
+            <a href="contacts.html">Контакты</a>
+        </nav> 
+        <div class="nav-izbr-korz">
+            <a href="favorites.html"><img src="images/serdce.png" alt="Избранное"></a>
+            <a href="account.html"><img src="images/kabinet.png" alt="Кабинет"></a>
+            <a href="cart.html"><img src="images/korzina.png" alt="Корзина"></a>
+        </div>
+    </header>
+
+    <div class="about-hero">
+        <h1>О нашем салоне</h1>
+        <p>История, традиции и любовь к прекрасному</p>
+    </div>
+
+    <div class="about-content">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Retro Room — больше чем магазин</h2>
+                <p>Антикварный салон Retro Room открыл свои двери в 2010 году в самом сердце Ярославля. За 15 лет работы мы стали не просто местом, где можно приобрести уникальные вещи, но и настоящим центром притяжения для ценителей истории, искусства и красоты.</p>
+                <p>Наша коллекция насчитывает более 5000 предметов старины: от изящных украшений до монументальной мебели. Каждый экспонат проходит тщательную экспертизу, чтобы гарантировать подлинность и сохранность.</p>
+                <p>Мы гордимся тем, что помогаем предметам обрести новую жизнь, а нашим клиентам — частичку истории.</p>
+            </div>
+            <div class="about-image">
+                <img src="images/salon-interior.jpg" alt="Интерьер салона">
+            </div>
+        </div>
+
+        <div class="team-section">
+            <h2>Наша команда</h2>
+            <div class="team-cards">
+                <div class="team-card">
+                    <img src="images/exp1.jpg" alt="Эксперт">
+                    <h3>Анна Волкова</h3>
+                    <p>Главный эксперт</p>
+                    <p>Стаж 20 лет, специалист по живописи XIX века</p>
+                </div>
+                <div class="team-card">
+                    <img src="images/exp2.jpg" alt="Эксперт">
+                    <h3>Екатерина Морозова</h3>
+                    <p>Реставратор мебели</p>
+                    <p>Возвращает жизнь старинным предметам</p>
+                </div>
+                <div class="team-card">
+                    <img src="images/exp3.jpg" alt="Эксперт">
+                    <h3>Елена Преображенская</h3>
+                    <p>Искусствовед</p>
+                    <p>Специалист по фарфору и ювелирному искусству</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="values">
+        <div class="values-container">
+            <h2>Наши принципы</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <img src="images/authentic-icon.png" alt="Подлинность">
+                    <h3>100% подлинность</h3>
+                    <p>Каждый предмет имеет паспорт и заключение эксперта</p>
+                </div>
+                <div class="value-item">
+                    <img src="images/consult-icon.png" alt="Консультации">
+                    <h3>Экспертные консультации</h3>
+                    <p>Поможем с выбором и расскажем историю вещи</p>
+                </div>
+                <div class="value-item">
+                    <img src="images/delivery-icon.png" alt="Доставка">
+                    <h3>Бережная доставка</h3>
+                    <p>Специальные условия для антикварных предметов</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <a href="index.html"><img src="images/vaza.png" alt="Ваза"></a>
+            </div>
+            <div class="footer-links">
+                <a href="catalog.html">Каталог</a>
+                <a href="blog.html">Блог</a>
+                <a href="about.html">О нас</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+            <div class="footer-contacts">
+                <p>+7 999 999 99 99</p>
+                <p>retroroom@mail.ru</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/burger.js"></script>
+</body>
+</html>

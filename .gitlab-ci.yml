@@ -1,0 +1,10 @@
+# Файл .gitlab-ci.yml
+pages:
+  stage: deploy
+  script:
+    - echo "Сайт готов к публикации"
+  artifacts:
+    paths:
+      - public
+  only:
+    - main

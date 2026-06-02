@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Антикварный салон</title>
+</head>
+<body>
+
+    <div class="hero-section">
+        <header class="header">
+            <a href="#" ><img src="images/vaza.png" alt="Ваза"></a>
+
+            <button class="burger" id="burgerBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+                <nav class="navigacia">
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="blog.html">Блог</a>
+            <a href="about.html">О нас</a>
+            <a href="contacts.html">Контакты</a>
+        </nav> 
+        <div class="nav-izbr-korz">
+            <a href="favorites.html"><img src="images/serdce.png" alt="Избранное"></a>
+            <a href="account.html"><img src="images/kabinet.png" alt="Кабинет"></a>
+            <a href="cart.html" class="cart-link">
+                <img src="images/korzina.png" alt="Корзина">
+                <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+        </div>
+        </header>
+        
+        <div class="text-one">
+            <p class="antikvarnSalon">Антикварный салон</p>
+            <p class="magazin">магазин</p>
+        </div>
+    </div>
+
+    <section class="categories">
+    <h2 class="section-title">Мы сохраняем ценность</h2>
+    <div class="cards-container">
+        <div class="card">
+            <div class="card-image" style="background-image: url('images/jivopis.jpg');"></div>
+            <div class="card-content">
+                <h3>Живопись</h3>
+                <a href="catalog.html" class="btn-buy">Купить</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image" style="background-image: url('images/yvelir.png');"></div>
+            <div class="card-content">
+                <h3>Ювелирные украшения</h3>
+                <a href="catalog.html" class="btn-buy">Купить</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image" style="background-image: url('images/farfor.jpg');"></div>
+            <div class="card-content">
+                <h3>Фарфор</h3>
+                <a href="catalog.html" class="btn-buy">Купить</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image" style="background-image: url('images/mebel.jpg');"></div>
+            <div class="card-content">
+                <h3>Мебель</h3>
+                <a href="catalog.html" class="btn-buy">Купить</a>
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+    <section class="contacts">
+        <h2 class="section-title">Контактные данные</h2>
+        <div class="contacts-info">
+            <p class="contact-item"><img src="images/phone.png">+7 999 999 99 99</p>
+            <p class="contact-item"><img src="images/email.png">retroroom@mail.ru</p>
+            <p class="contact-item address">Ярославль, ул. Чехова 15</p>
+            <div class="social-icons">
+                <a href="#" class="social-link"><img src="images/vk.png"></a>
+                <a href="#" class="social-link"><img src="images/tg.png"></a>
+                <a href="#" class="social-link"><img src="images/insta.png"></a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <a href="index.html"><img src="images/vaza.png" alt="Ваза"></a>
+            </div>
+            <div class="footer-links">
+                <a href="catalog.html">Каталог</a>
+                <a href="blog.html">Блог</a>
+                <a href="about.html">О нас</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+            <div class="footer-contacts">
+                <p><img src="images/phone.png" alt="Телефон">+7 999 999 99 99</p>
+                <p><img src="images/email.png" alt="Email">retroroom@mail.ru</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/burger.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина | Антикварный салон Retro Room</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .cart-page { padding: 40px 20px; min-height: 70vh; background: #f4f1ea; flex: 1; }
+        .cart-title { font-family: 'Ambidexter', serif; font-size: 2.5rem; text-align: center; margin-bottom: 30px; color: #2c2c2c; }
+        .cart-empty { text-align: center; padding: 60px 20px; color: #666; font-size: 1.2rem; }
+        .cart-empty a { color: #7a2e3a; text-decoration: none; font-weight: 500; }
+        .cart-empty a:hover { text-decoration: underline; }
+        .cart-items { max-width: 900px; margin: 0 auto; }
+        .cart-item { display: flex; gap: 20px; padding: 20px; background: #fff; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); align-items: center; }
+        .cart-item-img { width: 100px; height: 100px; background: #e8e4dc; border-radius: 10px; background-size: cover; background-position: center; flex-shrink: 0; }
+        .cart-item-info { flex: 1; }
+        .cart-item-title { font-weight: 600; margin-bottom: 5px; color: #2c2c2c; }
+        .cart-item-price { color: #7a2e3a; font-weight: 700; font-size: 1.1rem; }
+        .cart-item-qty { margin: 10px 0; color: #666; }
+        .cart-item-remove { background: #f4f1ea; color: #7a2e3a; border: none; padding: 6px 18px; border-radius: 6px; cursor: pointer; }
+        .cart-item-remove:hover { background: #7a2e3a; color: #fff; }
+        .cart-total { text-align: right; font-size: 1.4rem; font-weight: 700; margin: 30px 0; color: #2c2c2c; }
+        .cart-actions { text-align: center; }
+        .btn-checkout { background: #7a2e3a; color: #fff; padding: 14px 45px; border: none; border-radius: 10px; font-size: 1.1rem; cursor: pointer; }
+        .btn-checkout:hover { background: #b13449; }
+        .btn-clear { background: #f4f1ea; color: #7a2e3a; padding: 14px 35px; border: 2px solid #7a2e3a; border-radius: 10px; font-size: 1rem; cursor: pointer; margin-left: 15px; }
+        .btn-clear:hover { background: #7a2e3a; color: #fff; }
+        @media (max-width: 600px) { 
+            .cart-item { flex-direction: column; text-align: center; } 
+            .cart-item-img { width: 100%; height: 200px; } 
+            .cart-actions { display: flex; flex-direction: column; gap: 10px; }
+            .btn-clear { margin-left: 0; }
+            .cart-total { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header header-catalog">
+        <a href="index.html"><img src="images/vaza.png" alt="Ваза" class="vaza"></a>
+        <button class="burger" id="burgerBtn">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="navigacia">
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="blog.html">Блог</a>
+            <a href="about.html">О нас</a>
+            <a href="contacts.html">Контакты</a>
+        </nav> 
+        <div class="nav-izbr-korz">
+            <a href="favorites.html"><img src="images/serdce.png" alt="Избранное"></a>
+            <a href="account.html"><img src="images/kabinet.png" alt="Кабинет"></a>
+            <a href="cart.html" class="cart-link">
+                <img src="images/korzina.png" alt="Корзина">
+                <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="cart-page">
+        <h1 class="cart-title">Ваша корзина</h1>
+        <div id="cartItems"></div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo"><a href="index.html"><img src="images/vaza.png" alt="Ваза"></a></div>
+            <div class="footer-links">
+                <a href="catalog.html">Каталог</a>
+                <a href="blog.html">Блог</a>
+                <a href="about.html">О нас</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+            <div class="footer-contacts"><p>+7 999 999 99 99</p><p>retroroom@mail.ru</p></div>
+        </div>
+    </footer>
+
+
+    <div class="modal-checkout" id="checkoutModal">
+        <div class="modal-checkout-content">
+            <button class="modal-checkout-close" id="checkoutClose">&times;</button>
+            <div class="modal-checkout-header">
+                <h3>
+                    <img src="images/surprise.png" alt="Подарок" style="width:40px;height:40px;vertical-align:middle;margin-right:8px;">
+                    Оформление заказа
+                </h3>
+                <p>Заполните данные, и мы свяжемся с вами для подтверждения</p>
+            </div>
+            <form class="modal-checkout-body" id="checkoutForm">
+                <div class="order-summary">
+                    <div class="order-summary-title">
+                        <span>Ваш заказ</span>
+                        <span id="orderItemsCount">0 товаров</span>
+                    </div>
+                    <div id="orderItemsList"></div>
+                    <div class="order-total">
+                        <span>Итого:</span>
+                        <span id="orderTotal">0 ₽</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Имя <span class="required">*</span></label>
+                        <input type="text" name="name" required placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон <span class="required">*</span></label>
+                        <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="example@mail.ru">
+                </div>
+                <div class="form-group">
+                    <label>Способ получения</label>
+                    <select name="delivery">
+                        <option value="pickup">Самовывоз (Ярославль, ул. Чехова 15)</option>
+                        <option value="delivery">Доставка курьером</option>
+                        <option value="post">Почта России</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Комментарий к заказу</label>
+                    <textarea name="comment" placeholder="Пожелания, вопросы, удобное время для звонка..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="agree" required style="width: auto; margin: 0;">
+                        <span style="font-size: 0.9rem; color: #666;">
+                            Согласен на обработку <a href="#" style="color: #7a2e3a;">персональных данных</a>
+                        </span>
+                    </label>
+                </div>
+            </form>
+            <div class="modal-checkout-footer">
+                <button type="button" class="btn-cancel-order" id="checkoutCancel">Отмена</button>
+                <button type="submit" form="checkoutForm" class="btn-submit-order" id="checkoutSubmit">
+                    Оформить заказ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/catalog.js"></script>
+    
+    <script>
+        // Простая инициализация корзины
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof updateCartBadge === 'function') updateCartBadge();
+            if (typeof renderCartPage === 'function') renderCartPage();
+            
+            // Тест проверяем, что функция доступна
+            console.log('🔍 cart.html: openCheckoutModal =', typeof openCheckoutModal);
+            console.log('🔍 cart.html: checkoutModal =', document.getElementById('checkoutModal'));
+        });
+    </script>
+
+    <script src="js/burger.js"></script>
+</body>
+</html>

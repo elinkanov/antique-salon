@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/catalog.css">
+    <title>Каталог - Антикварный салон</title>
+</head>
+<body>
+    
+    <header class="header header-catalog">
+        <a href="index.html"><img src="images/vaza.png" alt="Ваза" class="vaza"></a>
+        <input class="search" type="search" placeholder="Поиск по каталогу..." id="globalSearch">
+        <button class="burger" id="burgerBtn">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="navigacia">
+            
+            <a href="index.html">Главная</a>
+            <a href="catalog.html" class="active">Каталог</a>
+            <a href="blog.html">Блог</a>
+            <a href="about.html">О нас</a>
+            <a href="contacts.html">Контакты</a>
+        </nav> 
+        <div class="nav-izbr-korz">
+            <a href="favorites.html"><img src="images/serdce.png" alt="Избранное"></a>
+            <a href="account.html"><img src="images/kabinet.png" alt="Кабинет"></a>
+            <a href="cart.html" class="cart-link">
+                <img src="images/korzina.png" alt="Корзина">
+                <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="catalog-hero">
+        <h1 class="catalog-title">Каталог антиквариата</h1>
+        <p class="catalog-subtitle">Уникальные предметы искусства и старины</p>
+    </div>
+
+    <div class="catalog-wrapper">
+        <aside class="filters-sidebar">
+            <div class="filter-section">
+                <h3 class="filter-title">Категории</h3>
+                <div class="filter-options">
+                    <label class="filter-label">
+                        <input type="checkbox" name="category" value="painting" checked>
+                        <span>Живопись</span>
+                    </label>
+                    <label class="filter-label">
+                        <input type="checkbox" name="category" value="jewelry" checked>
+                        <span>Ювелирные украшения</span>
+                    </label>
+                    <label class="filter-label">
+                        <input type="checkbox" name="category" value="porcelain" checked>
+                        <span>Фарфор</span>
+                    </label>
+                    <label class="filter-label">
+                        <input type="checkbox" name="category" value="furniture" checked>
+                        <span>Мебель</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3 class="filter-title">Цена</h3>
+                <div class="price-range">
+                    <input type="number" placeholder="От" id="priceFrom" class="price-input">
+                    <input type="number" placeholder="До" id="priceTo" class="price-input">
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3 class="filter-title">Период</h3>
+                <div class="filter-options">
+                    <label class="filter-label">
+                        <input type="checkbox" name="period" value="18">
+                        <span>XVIII век</span>
+                    </label>
+                    <label class="filter-label">
+                        <input type="checkbox" name="period" value="19">
+                        <span>XIX век</span>
+                    </label>
+                    <label class="filter-label">
+                        <input type="checkbox" name="period" value="20">
+                        <span>XX век</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3 class="filter-title">Сортировка</h3>
+                <select id="sortSelect" class="sort-select">
+                    <option value="default">По умолчанию</option>
+                    <option value="price-asc">Цена: по возрастанию</option>
+                    <option value="price-desc">Цена: по убыванию</option>
+                    <option value="name">По названию</option>
+                </select>
+            </div>
+
+            <button class="reset-filters" id="resetFilters">Сбросить фильтры</button>
+        </aside>
+
+        <main class="catalog-main">
+            <div class="catalog-info">
+                <span id="itemsCount">Показано товаров: 120</span>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+            </div>
+
+            <div class="pagination" id="pagination">
+                <button class="page-btn active" data-page="1">1</button>
+                <button class="page-btn" data-page="2">2</button>
+                <button class="page-btn" data-page="3">3</button>
+                <button class="page-btn" data-page="4">4</button>
+                <button class="page-btn" data-page="5">5</button>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <a href="index.html"><img src="images/vaza.png" alt="Ваза"></a>
+            </div>
+            <div class="footer-links">
+                <a href="catalog.html">Каталог</a>
+                <a href="blog.html">Блог</a>
+                <a href="about.html">О нас</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+            <div class="footer-contacts">
+                <p>+7 999 999 99 99</p>
+                <p>retroroom@mail.ru</p>
+            </div>
+        </div>
+    </footer>
+
+<div class="modal-checkout" id="checkoutModal">
+        <div class="modal-checkout-content">
+            <button class="modal-checkout-close" id="checkoutClose">&times;</button>
+            <div class="modal-checkout-header">
+                <h3>
+                    <img src="images/surprise.png" alt="Подарок" style="width:40px;height:40px;vertical-align:middle;margin-right:8px;">
+                    Оформление заказа
+                </h3>
+                <p>Заполните данные, и мы свяжемся с вами для подтверждения</p>
+            </div>
+            <form class="modal-checkout-body" id="checkoutForm">
+                <div class="order-summary">
+                    <div class="order-summary-title">
+                        <span>Ваш заказ</span>
+                        <span id="orderItemsCount">0 товаров</span>
+                    </div>
+                    <div id="orderItemsList"></div>
+                    <div class="order-total">
+                        <span>Итого:</span>
+                        <span id="orderTotal">0 ₽</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Имя <span class="required">*</span></label>
+                        <input type="text" name="name" required placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон <span class="required">*</span></label>
+                        <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="example@mail.ru">
+                </div>
+                <div class="form-group">
+                    <label>Способ получения</label>
+                    <select name="delivery">
+                        <option value="pickup">Самовывоз (Ярославль, ул. Чехова 15)</option>
+                        <option value="delivery">Доставка курьером</option>
+                        <option value="post">Почта России</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Комментарий к заказу</label>
+                    <textarea name="comment" placeholder="Пожелания, вопросы, удобное время для звонка..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="agree" required style="width: auto; margin: 0;">
+                        <span style="font-size: 0.9rem; color: #666;">
+                            Согласен на обработку <a href="#" style="color: #7a2e3a;">персональных данных</a>
+                        </span>
+                    </label>
+                </div>
+            </form>
+            <div class="modal-checkout-footer">
+                <button type="button" class="btn-cancel-order" id="checkoutCancel">Отмена</button>
+                <button type="submit" form="checkoutForm" class="btn-submit-order" id="checkoutSubmit">
+                    Оформить заказ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/catalog.js"></script>
+    <script src="js/burger.js"></script>
+</body>
+</html>

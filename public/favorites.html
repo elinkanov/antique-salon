@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Избранное | Антикварный салон Retro Room</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .favorites-page { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .favorites-page h1 { font-family: 'Ambidexter', serif; font-size: 3rem; color: #7a2e3a; text-align: center; margin-bottom: 30px; }
+        .favorites-grid { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; }
+        .fav-card { background: #fff; border-radius: 20px; width: 260px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; position: relative; transition: transform 0.3s; }
+        .fav-card:hover { transform: translateY(-8px); }
+        .fav-card .remove-fav { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px; color: #7a2e3a; transition: all 0.3s; z-index: 5; }
+        .fav-card .remove-fav:hover { background: #7a2e3a; color: white; }
+        .fav-card-image { height: 250px; background-size: cover; background-position: center; }
+        .fav-card-content { padding: 15px; text-align: center; }
+        .fav-card-content h3 { font-size: 1.1rem; margin-bottom: 10px; }
+        .fav-card-content p { color: #7a2e3a; font-weight: bold; margin-bottom: 15px; }
+        .fav-card-content .btn-cart { background: #7a2e3a; color: white; padding: 8px 20px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
+        .fav-card-content .btn-cart:hover { background: #b13449; }
+        .empty-fav { text-align: center; padding: 60px; background: #f4f1ea; border-radius: 20px; }
+        .empty-fav p { font-size: 1.2rem; margin-bottom: 20px; }
+        .empty-fav a { color: #7a2e3a; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html"><img src="images/vaza.png" alt="Ваза"></a>
+        <button class="burger" id="burgerBtn">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="navigacia">
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="blog.html">Блог</a>
+            <a href="about.html">О нас</a>
+            <a href="contacts.html">Контакты</a>
+        </nav> 
+        <div class="nav-izbr-korz">
+            <a href="favorites.html"><img src="images/serdce.png" alt="Избранное"></a>
+            <a href="account.html"><img src="images/kabinet.png" alt="Кабинет"></a>
+            <a href="cart.html" class="cart-link">
+                <img src="images/korzina.png" alt="Корзина">
+                <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="favorites-page">
+        <h1>Избранное</h1>
+        <div id="favoritesContainer" class="favorites-grid"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo"><a href="index.html"><img src="images/vaza.png" alt="Ваза"></a></div>
+            <div class="footer-links">
+                <a href="catalog.html">Каталог</a>
+                <a href="blog.html">Блог</a>
+                <a href="about.html">О нас</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+            <div class="footer-contacts"><p>+7 999 999 99 99</p><p>retroroom@mail.ru</p></div>
+        </div>
+    </footer>
+
+    <script>
+        function formatPrice(p) { return new Intl.NumberFormat('ru-RU').format(p) + ' ₽'; }
+        function getCart() { return JSON.parse(localStorage.getItem('antiqueCart')) || []; }
+        function saveCart(c) { localStorage.setItem('antiqueCart', JSON.stringify(c)); updateCartBadge(); }
+        
+        function updateCartBadge() {
+            const badge = document.getElementById('cartBadge');
+            if (badge) {
+                const cart = getCart();
+                const total = cart.reduce((s, i) => s + (i.quantity || 1), 0);
+                badge.textContent = total;
+                badge.style.display = total > 0 ? 'flex' : 'none';
+            }
+        }
+        
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#2c2c2c;color:#fff;padding:12px 24px;border-radius:8px;z-index:9999;animation:slideIn 0.3s ease;font-family:Montserrat,sans-serif;box-shadow:0 4px 12px rgba(0,0,0,0.3)';
+            document.body.appendChild(toast);
+            setTimeout(() => { toast.style.animation='slideOut 0.3s ease'; setTimeout(()=>toast.remove(),300); }, 3000);
+        }
+        if(!document.getElementById('toast-anim')){
+            const s=document.createElement('style');s.id='toast-anim';
+            s.textContent='@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}@keyframes slideOut{from{transform:translateX(0);opacity:1}to{transform:translateX(100%);opacity:0}}';
+            document.head.appendChild(s);
+        }
+
+        function loadFavorites() {
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const container = document.getElementById('favoritesContainer');
+            
+            if (favorites.length === 0) {
+                container.innerHTML = `<div class="empty-fav" style="width:100%"><p>У вас пока нет избранных товаров</p><a href="catalog.html">Перейти в каталог</a></div>`;
+                updateCartBadge();
+                return;
+            }
+
+            container.innerHTML = favorites.map(item => `
+                <div class="fav-card" data-id="${item.id}">
+                    <button class="remove-fav" data-id="${item.id}" title="Удалить">✕</button>
+                    <div class="fav-card-image" style="background-image:url('${item.image}')"></div>
+                    <div class="fav-card-content">
+                        <h3>${item.title}</h3>
+                        <p>${formatPrice(Number(item.price))}</p>
+                        <button class="btn-cart" data-id="${item.id}" data-title="${item.title}" data-price="${item.price}" data-image="${item.image}">В корзину</button>
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.remove-fav').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = btn.dataset.id;
+                    let favs = JSON.parse(localStorage.getItem('favorites')) || [];
+                    favs = favs.filter(item => item.id != id);
+                    localStorage.setItem('favorites', JSON.stringify(favs));
+                    showToastWithIcon('Удалено из избранного', 'images/serdce.png', 'info');
+                    loadFavorites();
+                });
+            });
+
+
+            function showToastWithIcon(msg, iconPath, type = 'info') {
+                document.querySelectorAll('.toast').forEach(t => t.remove());
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                toast.innerHTML = `
+                <img src="${iconPath}" style="width:30px;height:30px;margin-right:12px;object-fit:contain;flex-shrink:0;">
+                <span>${msg}</span>
+                `;
+                toast.style.cssText = 'position:fixed;bottom:30px;right:30px;background:linear-gradient(135deg,#2c2c2c,#1a1a1a);color:#fff;padding:16px 24px;border-radius:12px;z-index:9999;font-family:Montserrat,sans-serif;font-size:0.95rem;box-shadow:0 8px 25px rgba(0,0,0,0.3);display:flex;align-items:center;animation:slideIn 0.4s ease, fadeOut 0.4s ease 2.6s forwards;border-left:4px solid #d4af37;max-width:350px';
+                if(type==='success') toast.style.borderLeftColor='#4caf50';
+                if(type==='error') toast.style.borderLeftColor='#f44336';
+                document.body.appendChild(toast);
+                    setTimeout(() => { 
+                        toast.style.animation='fadeOut 0.4s ease forwards'; 
+                        setTimeout(()=>toast.remove(),400); 
+                    }, 3000);
+                }
+
+            document.querySelectorAll('.btn-cart').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const item = {
+                        id: Number(btn.dataset.id),
+                        title: btn.dataset.title,
+                        price: Number(btn.dataset.price), 
+                        image: btn.dataset.image,
+                        quantity: 1
+                    };
+                    
+                    let cart = getCart();
+                    const existing = cart.find(i => i.id == item.id);
+                    
+                    if (existing) {
+                        existing.quantity++;
+                    } else {
+                        cart.push(item);
+                    }
+                    
+                    saveCart(cart);
+                    showToast(`✅ "${item.title}" добавлен в корзину!`);
+                });
+            });
+            
+            updateCartBadge();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartBadge();
+            loadFavorites();
+        });
+    </script>
+
+    <script src="js/burger.js"></script>
+</body>
+</html>
