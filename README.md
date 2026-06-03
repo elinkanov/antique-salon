@@ -65,28 +65,32 @@ $pass = '';
 
 ## Структура проекта
 
-README.md
-.gitlab-ci.yml
-public/
-index.html              # Главная страница
-catalog.html            # Каталог
-cart.html               # Корзина
-favorites.html          # Избранное
-account.html            # Личный кабинет
-blog.html               # Блог
-about.html              # О нас
-contacts.html           # Контакты
-css/                    # Стили (main.css, catalog.css, blog.css)
-js/                     # Скрипты (catalog.js, blog.js, burger.js)
-php/                    # Серверные скрипты (order.php, get_orders.php)
-images/                 # Изображения
-imagesblog/             # Изображения блога
-imagescatalog/          # Изображения каталога
-fonts/                  # Шрифты
+antique-salon/
+├── README.md
+├── .gitlab-ci.yml
+├── public/
+│ ├── index.html # Главная страница
+│ ├── catalog.html # Каталог
+│ ├── cart.html # Корзина
+│ ├── favorites.html # Избранное
+│ ├── account.html # Личный кабинет
+│ ├── blog.html # Блог
+│ ├── about.html # О нас
+│ ├── contacts.html # Контакты
+│ ├── css/ # Стили
+│ ├── js/ # Скрипты
+│ ├── php/ # Серверные скрипты
+│ ├── images/ # Изображения
+│ ├── imagesblog/ # Изображения блога
+│ ├── imagescatalog/ # Изображения каталога
+│ └── fonts/ # Шрифты
 
 ## Автор
 
 Элина Новожилова 
+
 Почта: elinanov07@gmail.com 
+
 VK: https://vk.com/elinkanovozhilova 
+
 GitVerse: https://gitverse.ru/elina07
