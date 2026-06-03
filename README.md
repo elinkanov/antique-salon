@@ -61,6 +61,7 @@ $host = 'localhost';
 $db   = 'antique_shop';
 $user = 'root';
 $pass = '';
+```
 
 ## Структура проекта
 
