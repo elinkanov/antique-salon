@@ -65,25 +65,41 @@ $pass = '';
 
 ## Структура проекта
 
-antique-salon/
-├── README.md
-├── .gitlab-ci.yml
-├── public/
-│ ├── index.html # Главная страница
-│ ├── catalog.html # Каталог
-│ ├── cart.html # Корзина
-│ ├── favorites.html # Избранное
-│ ├── account.html # Личный кабинет
-│ ├── blog.html # Блог
-│ ├── about.html # О нас
-│ ├── contacts.html # Контакты
-│ ├── css/ # Стили
-│ ├── js/ # Скрипты
-│ ├── php/ # Серверные скрипты
-│ ├── images/ # Изображения
-│ ├── imagesblog/ # Изображения блога
-│ ├── imagescatalog/ # Изображения каталога
-│ └── fonts/ # Шрифты
+README.md
+
+.gitlab-ci.yml
+
+public/
+
+index.html              # Главная страница
+
+catalog.html            # Каталог
+
+cart.html               # Корзина
+
+favorites.html          # Избранное
+
+account.html            # Личный кабинет
+
+blog.html               # Блог
+
+about.html              # О нас
+
+contacts.html           # Контакты
+
+css/                    # Стили (main.css, catalog.css, blog.css)
+
+js/                     # Скрипты (catalog.js, blog.js, burger.js)
+
+php/                    # Серверные скрипты (order.php, get_orders.php)
+
+images/                 # Изображения
+
+imagesblog/             # Изображения блога
+
+imagescatalog/          # Изображения каталога
+
+fonts/                  # Шрифты Изображения каталога
 
 ## Автор
 
