@@ -47,7 +47,7 @@ https://elina07.gitverse.site/antique-salon/
 
 ### Полная версия (с PHP и MySQL)
 
-1. Установите локальный сервер: **OpenServer**, **XAMPP**
+1. Установите локальный сервер: **XAMPP**, **OpenServer**
 2. Скопируйте папку проекта в `htdocs` (или `domains`)
 3. Импортируйте базу данных:
    - Откройте **phpMyAdmin** (`http://localhost/phpmyadmin`)
